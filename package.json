@@ -8,6 +8,7 @@
 		"dev": "tsnd --respawn --transpile-only src/server.ts",
 		"start": "sh etc/start.sh",
 		"build": "sh etc/build.sh",
+		"test": "mocha ./tests/ --ui tdd",
 		"test:unit": "mocha -r ts-node/register 'tests/1_unit-tests.ts'",
 		"test:e2e": "mocha -r ts-node/register 'tests/2_functional-tests.ts'"
 	},
