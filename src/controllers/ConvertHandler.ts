@@ -7,12 +7,12 @@ export default class ConvertHandler {
   private inputRegex = /[a-z]+|[^a-z]+/gi
   private units = ['gal', 'l', 'mi', 'km', 'lbs', 'kg', 'GAL', 'L', 'MI', 'KM', 'LBS', 'KG']
   private fromAbbrToFull = {
-    GAL: 'gallon(s)',
-    LBS: 'pound(s)',
-    MI: 'mile(s)',
-    L: 'litre(s)',
-    KG: 'kilogram(s)',
-    KM: 'kilometre(s)',
+    GAL: 'gallons',
+    LBS: 'pounds',
+    MI: 'miles',
+    L: 'litres',
+    KG: 'kilograms',
+    KM: 'kilometres',
   }
   private fromOneUnitToAnother = {
     GAL: 'L',
