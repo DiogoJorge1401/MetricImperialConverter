@@ -24,8 +24,8 @@
 *
 *
 */
-const fs = require('fs');
-const runner = require('../test-runner');
+import fs from 'fs';
+import runner from '../test-runner';
 
 export default function (app) {
   app.get('/_api/server.js', function (req, res, next) {
