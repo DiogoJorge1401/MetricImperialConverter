@@ -1,6 +1,5 @@
 
 import express from 'express';
-import bodyParser from 'body-parser';
 import { expect } from 'chai';
 import cors from 'cors';
 import apiRoutes from './routes/api';
@@ -11,10 +10,10 @@ var app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
-app.use(cors({ origin: '*' }));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(helmet.noSniff())
 app.use(helmet.xssFilter())
 
