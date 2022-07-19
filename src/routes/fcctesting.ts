@@ -24,10 +24,6 @@
 *
 *
 */
-
-'use strict';
-
-const cors = require('cors');
 const fs = require('fs');
 const runner = require('../test-runner');
 
@@ -54,7 +50,7 @@ export default function (app) {
     });
   });
 
-  app.get('/_api/get-tests', cors(), function (req, res, next) {
+  app.get('/_api/get-tests', function (req, res, next) {
     console.log('requested');
     if (process.env.NODE_ENV === 'test') return next();
     res.json({ status: 'unavailable' });
