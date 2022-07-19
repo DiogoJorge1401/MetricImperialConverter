@@ -3,15 +3,15 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { expect } from 'chai';
 import cors from 'cors';
-import apiRoutes from './routes/api.js';
-import fccTestingRoutes from './routes/fcctesting.js';
+import apiRoutes from './routes/api';
+import fccTestingRoutes from './routes/fcctesting';
 import runner from './test-runner';
 import helmet from 'helmet'
 var app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
-app.use(cors({ origin: '*' })); //For FCC testing purposes only
+app.use(cors({ origin: '*' }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

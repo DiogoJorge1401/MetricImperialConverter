@@ -10,9 +10,9 @@ export default class ConvertHandler {
     GAL: 'gallons',
     LBS: 'pounds',
     MI: 'miles',
-    L: 'litres',
+    L: 'liters',
     KG: 'kilograms',
-    KM: 'kilometres',
+    KM: 'kilometers',
   }
   private fromOneUnitToAnother = {
     GAL: 'L',

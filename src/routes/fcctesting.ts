@@ -25,36 +25,34 @@
 *
 */
 
-import cors from 'cors';
-import fs from 'fs';
-import runner from '../test-runner';
+'use strict';
+
+const cors = require('cors');
+const fs = require('fs');
+const runner = require('../test-runner');
 
 export default function (app) {
-
-  app.route('/_api/server')
-    .get(function (req, res, next) {
-      console.log('requested');
-      fs.readFile(__dirname + '/server', function (err, data) {
-        if (err) return next(err);
-        res.send(data.toString());
-      });
+  app.get('/_api/server.js', function (req, res, next) {
+    console.log('requested');
+    fs.readFile(__dirname + '/server.js', function (err, data) {
+      if (err) return next(err);
+      res.send(data.toString());
     });
-  app.route('/_api/routes/api')
-    .get(function (req, res, next) {
-      console.log('requested');
-      fs.readFile(__dirname + '/routes/api', function (err, data) {
-        if (err) return next(err);
-        res.type('txt').send(data.toString());
-      });
+  });
+  app.get('/_api/routes/api.js', function (req, res, next) {
+    console.log('requested');
+    fs.readFile(__dirname + '/routes/api.js', function (err, data) {
+      if (err) return next(err);
+      res.type('txt').send(data.toString());
     });
-  app.route('/_api/controllers/ConvertHandler')
-    .get(function (req, res, next) {
-      console.log('requested');
-      fs.readFile(__dirname + '/controllers/ConvertHandler', function (err, data) {
-        if (err) return next(err);
-        res.type('txt').send(data.toString());
-      });
+  });
+  app.get('/_api/controllers/convertHandler.js', function (req, res, next) {
+    console.log('requested');
+    fs.readFile(__dirname + '/controllers/convertHandler.js', function (err, data) {
+      if (err) return next(err);
+      res.type('txt').send(data.toString());
     });
+  });
 
   app.get('/_api/get-tests', cors(), function (req, res, next) {
     console.log('requested');
