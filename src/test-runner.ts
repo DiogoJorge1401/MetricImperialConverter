@@ -25,22 +25,21 @@
 *
 */
 
-import analyser from './assertion-analyser';
+import analyser from './assertion-analyser'
 import { EventEmitter } from 'events';
 
 import Mocha from 'mocha'
 import fs from 'fs'
-import path from 'path'
+import path from 'path';
 
-let mocha = new Mocha();
-const NODE_ENV = process.env.NODE_ENV;
-let testDir = NODE_ENV === 'production' ? 'tests' : 'src/tests'
+const mocha = new Mocha();
+const testDir = './tests'
 
 
 // Add each .js file to the mocha instance
 fs.readdirSync(testDir).filter(function (file) {
   // Only keep the .js files
-  return file.substr(-3) === (NODE_ENV === 'production' ? '.js' : '.ts')
+  return file.substring(-3) === '.js';
 
 }).forEach(function (file) {
   mocha.addFile(
@@ -48,30 +47,30 @@ fs.readdirSync(testDir).filter(function (file) {
   );
 });
 
-let emitter = new EventEmitter() as any;
-emitter.run = () => {
+const emitter = new EventEmitter() as EventEmitter & { run, report };
+emitter.run = function () {
 
-  let tests: any[] = [];
+  const tests: any = [];
   let context = "";
-  let separator = ' -> ';
+  const separator = ' -> ';
   // Run the tests.
   try {
-    let runner = mocha.ui('tdd').run()
+    const runner = mocha.ui('tdd').run()
       .on('test end', function (test) {
         // remove comments
         let body = test.body.replace(/\/\/.*\n|\/\*.*\*\//g, '');
         // collapse spaces
         body = body.replace(/\s+/g, ' ');
-        let obj = {
+        const obj = {
           title: test.title,
           context: context.slice(0, -separator.length),
           state: test.state,
           // body: body,
           assertions: analyser(body)
-        } as any;
+        };
         tests.push(obj);
       })
-      .on('end', () => {
+      .on('end', function () {
         emitter.report = tests;
         emitter.emit('done', tests)
       })
@@ -87,7 +86,7 @@ emitter.run = () => {
   }
 };
 
-export default emitter as any
+export default emitter
 
 /*
  * Mocha.runner Events:

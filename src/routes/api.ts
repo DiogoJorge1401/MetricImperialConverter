@@ -18,10 +18,10 @@ export default function (app: Application) {
     if (errorMessage) return res.json(errorMessage)
 
     const returnUnit = convertHandler.getReturnUnit(initUnit)
-    const returnNum = convertHandler.convert(+initNum, initUnit)
+    const returnNum = convertHandler.convert(initNum, initUnit)
     const string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
 
-    return res.json({ initNum: +initNum, initUnit, returnNum: +returnNum, returnUnit, string })
+    return res.json({ initNum, initUnit, returnNum, returnUnit, string })
   })
 
 };

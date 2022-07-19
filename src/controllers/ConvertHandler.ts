@@ -7,12 +7,12 @@ export default class ConvertHandler {
   private inputRegex = /[a-z]+|[^a-z]+/gi
   private units = ['gal', 'l', 'mi', 'km', 'lbs', 'kg', 'GAL', 'L', 'MI', 'KM', 'LBS', 'KG']
   private fromAbbrToFull = {
-    GAL: 'gallons',
-    LBS: 'pounds',
-    MI: 'miles',
-    L: 'liters',
-    KG: 'kilograms',
-    KM: 'kilometers',
+    GAL: 'gallon(s)',
+    LBS: 'pound(s)',
+    MI: 'mile(s)',
+    L: 'litre(s)',
+    KG: 'kilogram(s)',
+    KM: 'kilometre(s)',
   }
   private fromOneUnitToAnother = {
     GAL: 'L',
@@ -46,7 +46,7 @@ export default class ConvertHandler {
     result = result[1] ?? result[0]
     if (!this.isValidUnit(result))
       result = 'invalid unit'
-    return result === 'l' ? 'L' : result;
+    return result === 'l' ? 'L' : result
   };
 
   getReturnUnit(initUnit: string) {
@@ -55,10 +55,10 @@ export default class ConvertHandler {
 
   convert(initNum: number, initUnit: string) {
     const conversionFn = this.getConversionFunction(initUnit.toUpperCase())
-    return conversionFn(initNum).toFixed(5);
+    return +conversionFn(initNum).toFixed(5);
   };
 
-  getString(initNum: number, initUnit: string, returnNum: string, returnUnit: string) {
+  getString(initNum: number, initUnit: string, returnNum: number, returnUnit: string) {
     let result = `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`;
 
     return result;

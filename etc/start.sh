@@ -2,6 +2,6 @@ cd dist
 
 yarn install --production
 
-export NODE_ENV=production
+export NODE_ENV=test
 
-node server.js
+node src/server.js

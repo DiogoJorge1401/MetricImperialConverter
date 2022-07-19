@@ -8,16 +8,20 @@
 		"dev": "tsnd --respawn --transpile-only src/server.ts",
 		"start": "sh etc/start.sh",
 		"build": "sh etc/build.sh",
-		"test:unit": "mocha -r ts-node/register 'src/tests/1_unit-tests.ts'",
-		"test:e2e": "mocha -r ts-node/register 'src/tests/2_functional-tests.ts'"
+		"test:unit": "mocha -r ts-node/register 'tests/1_unit-tests.ts'",
+		"test:e2e": "mocha -r ts-node/register 'tests/2_functional-tests.ts'"
 	},
 	"dependencies": {
-		"chai": "^4.2.0",
-		"chai-http": "^4.3.0",
-		"cors": "^2.8.5",
-		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"mocha": "^8.1.3"
+		"dotenv": "^8.2.0",		
+		"express": "^4.14.0",
+		"cors": "^2.8.1",
+		"body-parser": "^1.15.2",
+		"chai": "^3.5.0",
+		"mongodb": "^2.2.16",
+		"chai-http": "^3.0.0",
+		"mocha": "^3.2.0",
+		"zombie": "^5.0.5",
+		"helmet": "^3.1.0"
 	},
 	"devDependencies": {
 		"@types/cors": "2.8.12",
