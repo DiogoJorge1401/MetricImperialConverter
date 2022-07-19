@@ -51,6 +51,7 @@ suite("Unit Tests", function () {
       var input = [
         "gal",
         "mi",
+        'l',
         "km",
         "lbs",
         "kg",
@@ -62,7 +63,8 @@ suite("Unit Tests", function () {
         "KG"
       ];
       input.forEach(function (ele) {
-        assert.equal(convertHandler.getUnit(32 + ele), ele);
+        const expect = ele.toLowerCase() !== 'l' ? ele.toLowerCase() : 'L'
+        assert.equal(convertHandler.getUnit(32 + ele), expect);
       });
       done();
     });
@@ -90,9 +92,9 @@ suite("Unit Tests", function () {
       let input = ["gal", "l", "mi", "km", "lbs", "kg"];
       let expect = [
         "gallons",
-        "litres",
+        "liters",
         "miles",
-        "kilometres",
+        "kilometers",
         "pounds",
         "kilograms"
       ];
