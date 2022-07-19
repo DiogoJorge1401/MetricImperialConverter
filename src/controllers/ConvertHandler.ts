@@ -46,7 +46,7 @@ export default class ConvertHandler {
     result = result[1] ?? result[0]
     if (!this.isValidUnit(result))
       result = 'invalid unit'
-    return result;
+    return result === 'l' ? 'L' : result;
   };
 
   getReturnUnit(initUnit: string) {
